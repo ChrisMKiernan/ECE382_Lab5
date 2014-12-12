@@ -12,4 +12,4 @@ In this lab, it was important to use a .h file to store values. This, more than 
 
 To collect the values from the timer (telling us whether a 1 or 0 was received), the timer value had to be collected for each individual high pulse (the low pulses were all ignored - they were determined by what edge was present). The value of the timer was checked against a known value (and error margin) of a logic 1. If the values matched, then a 1 was pushed into the array and the whole array was shifted one bit to move on to the next value. Once the index of the array reached its maximum value, the interrupt flag was raised, and the program moved to the ISR.
 
-ISR---
+The ISR program was a simple but very important few lines that told the MSP that there was a new IR packet to be processed. As part of the ISR, the newIrPacket was set to true, which initiated the top level if{} statement. The if{} statement in the main loop tells the MSP to toggle the LEDs based on what packet is received - 1 or 0. In the case of my code, the 0 button lights up P1.0, the red LED, while the 1 button lights up P1.6, the green LED.
